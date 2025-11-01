@@ -64,6 +64,6 @@ class GameBoard:
 
         # Draw pellets and power pellets
         for pellet in self.pellets:
-            #pellet.draw(screen)
+            pellet.draw(screen)
         for power_pellet in self.power_pellets:
-            #power_pellet.draw(screen)
+            power_pellet.draw(screen)
