@@ -1,7 +1,7 @@
-Vishal: He created the item.py tests and modified item.py. He also reviewed the PR for the ghost.py modification and the ghost.py tests.
+Vishal: He created the REPORT.md based on what everyone did. He also looked at the code to ensure code quality. He raised a PR to ensure the CI/CD pipeline gets triggered correctly. 
 
-Ankit: He created the ghost.py tests and modified ghost.py. He also reviewed the PR for the item.py modification and the item.py tests.
+Ankit: He setup the GitHub Actions CI/CD pipeline. He also looked at the code to ensure code quality. 
 
-Souptik: He created the pac_man.py tests and modified pac_man.py. He also reviewed the PR for the game_board.py modification and the game_board.py tests. 
+Souptik: He renamed all appropriate branches, code and dependencies from player to pac_man. He did so using git filter-branch. 
 
-Eshan: He created the game_board.py tests and modified game_board.py. He also reviewed the PR for the pac_man.py modification and the pac_man.py tests. 
+Eshan: He stopped tracking the .env file in Git with sensitive data. He also removed any sensitive data from the Git history. 
