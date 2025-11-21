@@ -1,6 +1,6 @@
 import pygame
 import sys
-from player import Player
+from pac_man import Pac_Man
 from ghost import Ghost
 from game_board import GameBoard
 
@@ -23,7 +23,7 @@ clock = pygame.time.Clock()
 
 # Create game objects
 game_board = GameBoard()
-player = Player(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
+pac_man = Pac_Man(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
 ghosts = [
     Ghost(100, 100, GHOST_COLORS[0]),
     Ghost(WINDOW_WIDTH - 100, 100, GHOST_COLORS[1]),
@@ -41,8 +41,8 @@ def check_collisions():
     for pellet in game_board.pellets:
         if (
             not pellet.collected
-            and abs(pellet.x - player.x) < 15
-            and abs(pellet.y - player.y) < 15
+            and abs(pellet.x - pac_man.x) < 15
+            and abs(pellet.y - pac_man.y) < 15
         ):
             pellet.collected = True
             score += 10
@@ -51,8 +51,8 @@ def check_collisions():
     for power_pellet in game_board.power_pellets:
         if (
             not power_pellet.collected
-            and abs(power_pellet.x - player.x) < 15
-            and abs(power_pellet.y - player.y) < 15
+            and abs(power_pellet.x - pac_man.x) < 15
+            and abs(power_pellet.y - pac_man.y) < 15
         ):
             power_pellet.collected = True
             score += 50
@@ -63,7 +63,7 @@ def check_collisions():
 
     # Check ghost collisions
     for ghost in ghosts:
-        if abs(ghost.x - player.x) < 20 and abs(ghost.y - player.y) < 20:
+        if abs(ghost.x - pac_man.x) < 20 and abs(ghost.y - pac_man.y) < 20:
             if ghost.scared:
                 ghost.x = WINDOW_WIDTH // 2
                 ghost.y = WINDOW_HEIGHT // 2
@@ -86,27 +86,27 @@ def main():
                 if event.key == pygame.K_r and game_over:
                     # Reset game
                     game_over = False
-                    player.x = WINDOW_WIDTH // 2
-                    player.y = WINDOW_HEIGHT // 2
+                    pac_man.x = WINDOW_WIDTH // 2
+                    pac_man.y = WINDOW_HEIGHT // 2
                     for ghost in ghosts:
                         ghost.scared = False
                     score = 0
 
         if not game_over:
-            # Handle player movement
+            # Handle pac_man movement
             keys = pygame.key.get_pressed()
             if keys[pygame.K_RIGHT]:
-                player.move("right", game_board.walls)
+                pac_man.move("right", game_board.walls)
             elif keys[pygame.K_LEFT]:
-                player.move("left", game_board.walls)
+                pac_man.move("left", game_board.walls)
             elif keys[pygame.K_UP]:
-                player.move("up", game_board.walls)
+                pac_man.move("up", game_board.walls)
             elif keys[pygame.K_DOWN]:
-                player.move("down", game_board.walls)
+                pac_man.move("down", game_board.walls)
 
             # Move ghosts
             for ghost in ghosts:
-                ghost.move(game_board.walls, player)
+                ghost.move(game_board.walls, pac_man)
 
             # Check collisions
             check_collisions()
@@ -114,7 +114,7 @@ def main():
         # Draw everything
         screen.fill(BLACK)
         game_board.draw(screen)
-        player.draw(screen)
+        pac_man.draw(screen)
         for ghost in ghosts:
             ghost.draw(screen)
 

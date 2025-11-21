@@ -12,7 +12,7 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 GREEN = (0, 255, 0)
 
-# Player settings
+# Pac_Man settings
 PLAYER_SIZE = 20
 PLAYER_SPEED = 4
 

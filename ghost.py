@@ -13,17 +13,17 @@ class Ghost:
         self.scared = False
         self.scared_timer = 0
 
-    def move(self, walls, player):
+    def move(self, walls, pac_man):
         if not self.scared:
-            # Simple ghost AI: Try to move towards player with random variation
+            # Simple ghost AI: Try to move towards pac_man with random variation
             if random.random() < 0.1:
                 self.direction = random.choice(["right", "left", "up", "down"])
             else:
-                # Move towards player
-                if abs(player.x - self.x) > abs(player.y - self.y):
-                    self.direction = "right" if player.x > self.x else "left"
+                # Move towards pac_man
+                if abs(pac_man.x - self.x) > abs(pac_man.y - self.y):
+                    self.direction = "right" if pac_man.x > self.x else "left"
                 else:
-                    self.direction = "down" if player.y > self.y else "up"
+                    self.direction = "down" if pac_man.y > self.y else "up"
 
         new_x = self.x
         new_y = self.y

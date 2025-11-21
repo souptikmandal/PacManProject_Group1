@@ -1,8 +1,8 @@
-# player.py
+# pac_man.py
 import pygame
 
 
-class Player:
+class Pac_Man:
     def __init__(self, x, y):
         self.x = x
         self.y = y
