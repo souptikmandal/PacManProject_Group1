@@ -2,7 +2,7 @@ import pytest
 import pygame
 from game_board import GameBoard
 from ghost import Ghost
-from player import Player
+from pac_man import Pac_Man
 
 
 @pytest.fixture(scope="module", autouse=True)
@@ -56,14 +56,14 @@ def test_ghost_initialization():
 def test_ghost_movement_without_walls():
     """Test that ghost moves in the correct direction when there are no walls."""
     ghost = Ghost(200, 200, (255, 0, 0))
-    player = Player(300, 200)
+    pac_man = Pac_Man(300, 200)
 
     # Set a specific direction
     ghost.direction = "right"
     initial_x = ghost.x
 
     # Move the ghost with no walls
-    ghost.move([], player)
+    ghost.move([], pac_man)
 
     # Ghost should have moved right
     assert ghost.x >= initial_x
@@ -72,7 +72,7 @@ def test_ghost_movement_without_walls():
 def test_ghost_scared_mode():
     """Test that ghost scared mode works correctly."""
     ghost = Ghost(200, 200, (255, 0, 0))
-    player = Player(300, 200)
+    pac_man = Pac_Man(300, 200)
 
     # Enable scared mode
     ghost.scared = True
@@ -82,7 +82,7 @@ def test_ghost_scared_mode():
     assert ghost.scared_timer == 100
 
     # Move ghost once
-    ghost.move([], player)
+    ghost.move([], pac_man)
 
     # Timer should decrease
     assert ghost.scared_timer == 99
@@ -91,14 +91,14 @@ def test_ghost_scared_mode():
 def test_ghost_scared_mode_expires():
     """Test that ghost scared mode expires after timer runs out."""
     ghost = Ghost(200, 200, (255, 0, 0))
-    player = Player(300, 200)
+    pac_man = Pac_Man(300, 200)
 
     # Enable scared mode with short timer
     ghost.scared = True
     ghost.scared_timer = 1
 
     # Move ghost once
-    ghost.move([], player)
+    ghost.move([], pac_man)
 
     # Scared mode should be disabled
     assert ghost.scared == False
@@ -109,11 +109,11 @@ def test_ghost_collision_with_walls():
     """Test that ghost cannot move through walls."""
     game_board = GameBoard()
     ghost = Ghost(100, 100, (255, 0, 0))
-    player = Player(300, 300)
+    pac_man = Pac_Man(300, 300)
 
     # Try to move ghost multiple times
     for _ in range(10):
-        ghost.move(game_board.walls, player)
+        ghost.move(game_board.walls, pac_man)
 
     # Ghost should not be stuck in a wall
     ghost_rect = pygame.Rect(
@@ -129,21 +129,21 @@ def test_ghost_collision_with_walls():
         )
 
 
-def test_ghost_chases_player():
-    """Test that ghost moves toward player when not scared."""
+def test_ghost_chases_pac_man():
+    """Test that ghost moves toward pac_man when not scared."""
     ghost = Ghost(100, 100, (255, 0, 0))
-    player = Player(500, 100)
+    pac_man = Pac_Man(500, 100)
 
     # Ghost is not scared
     ghost.scared = False
 
     initial_x = ghost.x
 
-    # Move ghost multiple times toward player
+    # Move ghost multiple times toward pac_man
     for _ in range(50):
-        ghost.move([], player)
+        ghost.move([], pac_man)
 
-    # Ghost should have moved toward player (to the right)
+    # Ghost should have moved toward pac_man (to the right)
     assert ghost.x > initial_x
 
 
@@ -161,12 +161,12 @@ def test_ghost_multiple_colors():
 def test_ghost_speed():
     """Test that ghost moves at the correct speed."""
     ghost = Ghost(200, 200, (255, 0, 0))
-    player = Player(300, 200)
+    pac_man = Pac_Man(300, 200)
 
     ghost.direction = "right"
     initial_x = ghost.x
 
-    ghost.move([], player)
+    ghost.move([], pac_man)
 
     # Ghost should move exactly 'speed' pixels
     assert ghost.x == initial_x + ghost.speed

@@ -13,8 +13,8 @@ BLUE = (0, 0, 255)
 GREEN = (0, 255, 0)
 
 # Pac_Man settings
-PLAYER_SIZE = 20
-PLAYER_SPEED = 4
+PAC_MAN_SIZE = 20
+PAC_MAN_SPEED = 4
 
 # Ghost settings
 GHOST_SIZE = 20
