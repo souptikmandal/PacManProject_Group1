@@ -14,34 +14,43 @@ class Pac_Man:
         self.opening_mouth = True
 
     def move(self, direction, walls):
-        new_x = self.x
-        new_y = self.y
+        # Calculate movement direction
+        dx = 0
+        dy = 0
 
         if direction == "right":
-            new_x += self.speed
+            dx = self.speed
         elif direction == "left":
-            new_x -= self.speed
+            dx = -self.speed
         elif direction == "up":
-            new_y -= self.speed
+            dy = -self.speed
         elif direction == "down":
-            new_y += self.speed
+            dy = self.speed
 
-        # Check collision with walls
-        can_move = True
-        for wall in walls:
-            if pygame.Rect(
-                new_x - self.radius,
-                new_y - self.radius,
-                self.radius * 2,
-                self.radius * 2,
-            ).colliderect(wall):
-                can_move = False
+        # Move as far as possible without colliding
+        for step in range(abs(dx) if dx != 0 else abs(dy)):
+            new_x = self.x + (1 if dx > 0 else -1 if dx < 0 else 0)
+            new_y = self.y + (1 if dy > 0 else -1 if dy < 0 else 0)
+
+            # Check collision with walls
+            can_move = True
+            for wall in walls:
+                if pygame.Rect(
+                    new_x - self.radius,
+                    new_y - self.radius,
+                    self.radius * 2,
+                    self.radius * 2,
+                ).colliderect(wall):
+                    can_move = False
+                    break
+
+            if can_move:
+                self.x = new_x
+                self.y = new_y
+            else:
                 break
 
-        if can_move:
-            self.x = new_x
-            self.y = new_y
-            self.direction = direction
+        self.direction = direction
 
     def draw(self, screen):
         # Animate mouth

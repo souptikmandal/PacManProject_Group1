@@ -26,7 +26,7 @@ class GameBoard:
         # Inner walls
         self.walls.extend(
             [
-                pygame.Rect(100, 100, 20, 200),
+                pygame.Rect(150, 150, 20, 200),
                 pygame.Rect(300, 100, 200, 20),
                 pygame.Rect(600, 100, 20, 400),
                 pygame.Rect(300, 350, 200, 20),
