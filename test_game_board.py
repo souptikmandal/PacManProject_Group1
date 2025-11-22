@@ -28,7 +28,7 @@ def test_gameboard_initialization(game_board):
 
 def test_outer_walls_dimensions(game_board):
     """Ensure the four outer walls exist and have correct placement."""
-    walls = game_board.walls[:4] 
+    walls = game_board.walls[:4]
     top, left, bottom, right = walls
 
     # Check top wall
@@ -55,9 +55,9 @@ def test_pellets_do_not_overlap_walls(game_board):
     for pellet in game_board.pellets:
         pellet_pos = (pellet.x, pellet.y)
         for wall in game_board.walls:
-            assert not wall.collidepoint(pellet_pos), (
-                f"Pellet at {pellet_pos} overlaps with wall at {wall}"
-            )
+            assert not wall.collidepoint(
+                pellet_pos
+            ), f"Pellet at {pellet_pos} overlaps with wall at {wall}"
 
 
 def test_power_pellet_positions(game_board):

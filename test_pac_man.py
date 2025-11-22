@@ -54,24 +54,22 @@ def test_pac_man_wall_collision(pac_man, walls):
     assert pac_man.x == 190  # Should not move through obstacle
 
 
-
 def test_pac_man_movement_with_obstacles(pac_man, walls):
     # Step 1: Move pac_man towards an obstacle (left wall)
     pac_man.x = 25
     pac_man.y = 100
     pac_man.move("left", walls)
-    assert pac_man.x == 0 # Should not move through the left wall
+    assert pac_man.x == 0  # Should not move through the left wall
 
     # Step 2: Move pac_man towards an obstacle (small obstacle at (200, 200))
     pac_man.x = 190
     pac_man.y = 210
     pac_man.move("right", walls)
-    assert pac_man.x == 200 # Should not move through the small obstacle
+    assert pac_man.x == 200  # Should not move through the small obstacle
 
     # Step 3: Move pac_man towards the right wall (new right wall at x=780)
     pac_man.x = 780
     pac_man.y = 100
     pac_man.move("right", walls)
     # Assert that the pac_man's position hasn't changed, as they can't move past the wall
-    assert pac_man.x == 780 # Should not move beyond the right wall
-
+    assert pac_man.x == 780  # Should not move beyond the right wall

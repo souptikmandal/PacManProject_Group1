@@ -48,7 +48,7 @@ class GameBoard:
 
         # Add power pellets in corners
         power_pellet_positions = [
-            #(50, 50),
+            # (50, 50),
             (self.width - 50, 50),
             (50, self.height - 50),
             (self.width - 50, self.height - 50),

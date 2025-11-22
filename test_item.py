@@ -38,6 +38,7 @@ def test_pellet_draw_respects_collected_flag(surface, monkeypatch):
     assert hasattr(p, "y")
 
     calls = {"count": 0}
+
     def fake_circle(screen, color, pos, radius):
         calls["count"] += 1
 
@@ -66,6 +67,7 @@ def test_power_pellet_draw_respects_collected_flag(surface, monkeypatch):
     pp = PowerPellet(70, 80)
 
     calls = {"count": 0}
+
     def fake_circle(screen, color, pos, radius):
         calls["count"] += 1
 

@@ -34,9 +34,9 @@ def test_ghosts_not_spawned_in_walls():
             ghost.radius * 2,
         )
         for wall in game_board.walls:
-            assert not ghost_rect.colliderect(wall), (
-                f"Ghost at ({ghost.x}, {ghost.y}) spawns inside wall {wall}"
-            )
+            assert not ghost_rect.colliderect(
+                wall
+            ), f"Ghost at ({ghost.x}, {ghost.y}) spawns inside wall {wall}"
 
 
 def test_ghost_initialization():
@@ -124,9 +124,9 @@ def test_ghost_collision_with_walls():
     )
 
     for wall in game_board.walls:
-        assert not ghost_rect.colliderect(wall), (
-            f"Ghost at ({ghost.x}, {ghost.y}) moved into wall {wall}"
-        )
+        assert not ghost_rect.colliderect(
+            wall
+        ), f"Ghost at ({ghost.x}, {ghost.y}) moved into wall {wall}"
 
 
 def test_ghost_chases_pac_man():
